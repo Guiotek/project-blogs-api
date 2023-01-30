@@ -1,6 +1,11 @@
 const UserSchema = (sequelize, DataTypes) => {
   const UserTable = sequelize.define('User', {
-    id: DataTypes.INTEGER,
+    id: {
+      type: DataTypes.INTEGER,
+      primaryKey: true,
+      allowNull: false,
+      autoIncrement: true,
+    },
     displayName: DataTypes.STRING,
     email: DataTypes.STRING,
     password: DataTypes.STRING,
@@ -12,7 +17,7 @@ const UserSchema = (sequelize, DataTypes) => {
 
   UserTable.associate = (models) => {
     UserTable.belongsTo(models.blog_posts, {
-     foreingKey: 'userId'
+     foreingKey: 'user_Id', as: 'userId'
     });
   }
 
