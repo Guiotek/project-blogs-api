@@ -16,8 +16,8 @@ const UserSchema = (sequelize, DataTypes) => {
   });
 
   UserTable.associate = (models) => {
-    UserTable.belongsTo(models.blog_posts, {
-     foreingKey: 'user_Id', as: 'userId'
+    UserTable.hasMany(models.BlogPost, {
+     foreingKey: 'user_Id'
     });
   }
 
