@@ -11,6 +11,12 @@ const CategorySchema = (sequelize, DataTypes) => {
     tableName: 'categories',
     underscored: true
   });
+
+  CategoryTable.associate = (models) => {
+    CategoryTable.hasMany(models.PostCategory, {
+     foreingKey: 'categoryId'
+    });
+  }
   
   return CategoryTable; 
 };

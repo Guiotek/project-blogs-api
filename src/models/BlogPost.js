@@ -15,7 +15,7 @@ const BlogSchema = (sequelize, DataTypes) => {
     published: DataTypes.DATE,
     updated: DataTypes.DATE,
   },{
-    tableName: 'users',
+    tableName: 'blog_posts',
     underscored: true
   });
 
@@ -23,6 +23,12 @@ const BlogSchema = (sequelize, DataTypes) => {
      BlogTable.belongsTo(models.User, {
       foreingKey: 'userId', as: 'user_id'
      })
+  }
+
+  BlogTable.associate = (models) => {
+    BlogTable.hasMany(models.PostCategory, {
+     foreingKey: 'postId'
+    });
   }
 
   return BlogTable;
