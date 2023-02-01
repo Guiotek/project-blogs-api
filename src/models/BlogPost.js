@@ -15,21 +15,21 @@ const BlogSchema = (sequelize, DataTypes) => {
     published: DataTypes.DATE,
     updated: DataTypes.DATE,
   },{
+    timestamps: false,
     tableName: 'blog_posts',
     underscored: true
   });
 
-  BlogTable.associate = (models) => {
-     BlogTable.belongsTo(models.User, {
-      foreingKey: 'userId', as: 'user_id'
-     })
+  BlogTable.associate = ({User, PostCategory}) => {
+     BlogTable.belongsTo(User, {
+      foreingKey: 'userId', as: 'user'
+     });
+
+    //  BlogTable.hasMany(PostCategory, {
+    //   foreingKey: 'post_id'
+    //  });
   }
 
-  BlogTable.associate = (models) => {
-    BlogTable.hasMany(models.PostCategory, {
-     foreingKey: 'postId'
-    });
-  }
 
   return BlogTable;
 };

@@ -11,13 +11,14 @@ const UserSchema = (sequelize, DataTypes) => {
     password: DataTypes.STRING,
     image: DataTypes.STRING,
   },{
+    timestamps: false,
     tableName: 'users',
     underscored: true
   });
 
   UserTable.associate = (models) => {
     UserTable.hasMany(models.BlogPost, {
-     foreingKey: 'user_Id'
+     foreingKey: 'userId', as: 'user'
     });
   }
 

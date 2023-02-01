@@ -8,15 +8,16 @@ const CategorySchema = (sequelize, DataTypes) => {
     },
     name: DataTypes.STRING,
   },{
+    timestamps: false,
     tableName: 'categories',
     underscored: true
   });
 
-  CategoryTable.associate = (models) => {
-    CategoryTable.hasMany(models.PostCategory, {
-     foreingKey: 'categoryId'
-    });
-  }
+  // CategoryTable.associate = (models) => {
+  //   CategoryTable.hasMany(models.PostCategory, {
+  //    foreingKey: 'category_id'
+  //   });
+  // }
   
   return CategoryTable; 
 };
