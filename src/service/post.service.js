@@ -12,7 +12,11 @@ const getall = async () => {
   
   const getOne = async (id) => {
     const post = await BlogPost.findOne({
-      attributes: ['id', 'title', 'content', 'userId', 'published', 'updated'],
+      include: [
+        { model: User, as: 'user', attributes: ['id', 'displayName', 'email', 'image'] },
+        { model: Category, as: 'categories', attributes: ['id', 'name'] },
+      ],
+      where: { id },
     });
     return post;
     };
